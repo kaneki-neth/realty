@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\RoleController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -35,3 +36,5 @@ Route::put("roles/{role}", [RoleController::class, 'update']);
 Route::delete("roles/{role}", [RoleController::class, 'destroy']);
 
 //Route::apiResource('roles', RoleController::class);
+
+Route::get("users", [UserController::class, 'index']);
