@@ -1,10 +1,12 @@
 <?php
 
-use App\Http\Controllers\Api\CategoryController;
-use App\Http\Controllers\Api\RoleController;
-use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\RoleController;
+use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\InvoiceController;
+use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,5 +38,6 @@ Route::put("roles/{role}", [RoleController::class, 'update']);
 Route::delete("roles/{role}", [RoleController::class, 'destroy']);
 
 //Route::apiResource('roles', RoleController::class);
-
-Route::get("users", [UserController::class, 'index']);
+Route::apiResource('users', UserController::class);
+Route::apiResource('products', ProductController::class);
+Route::apiResource('invoices', InvoiceController::class);

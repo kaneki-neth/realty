@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Foundation\Http\FormRequest;
 
-class StoreUserRequest extends FormRequest
+class UpdateUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -40,11 +40,6 @@ class StoreUserRequest extends FormRequest
                 'max:100'
             ],
 
-            "role_id" => [
-                "required",
-                "integer"
-            ],
-
             "birthdate" => [
                 'required',
                 'date'
@@ -72,7 +67,7 @@ class StoreUserRequest extends FormRequest
 
             "email" => [
                 'required',
-                Rule::unique('roles')->whereNull('deleted_at'),
+                Rule::unique('roles')->ignore($this->user)->whereNull('deleted_at'),
                 'min:5',
                 'max:100'
             ],
@@ -81,7 +76,6 @@ class StoreUserRequest extends FormRequest
                 'required',
                 'min:5'
             ]
-
         ];
     }
 }

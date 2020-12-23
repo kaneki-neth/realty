@@ -22,6 +22,7 @@ class User extends Authenticatable
         'first_name',
         'middle_name',
         'last_name',
+        'role_id',
         'birthdate',
         'sex',
         'barangay',

@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreRoleRequest;
-use App\Http\Requests\UpdateRoleRequest;
-use App\Http\Resources\RoleResource;
-use App\Models\Role;
+use App\Models\Invoice;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\InvoiceResource;
+use App\Http\Requests\StoreInvoiceRequest;
+use App\Http\Requests\UpdateInvoiceRequest;
 
-class RoleController extends Controller
+class InvoiceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +18,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::all();
-        return RoleResource::collection($roles);
+        $invoices = Invoice::all();
+        return InvoiceResource::collection($invoices);
     }
 
     /**
@@ -28,57 +28,57 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRoleRequest $request)
+    public function store(StoreInvoiceRequest $request)
     {
-        Role::create($request->validated());
+        Invoice::create($request->validated());
 
         return response()->json([
             "success" => true,
-            "message" => 'Successfully Created'
+            "message" => "Succesfully Created"
         ], 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Role  $role
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Role $role)
+    public function show(Invoice $invoice)
     {
-        return new RoleResource($role);
+        return new InvoiceResource($invoice);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Role  $role
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRoleRequest $request, Role $role)
+    public function update(UpdateInvoiceRequest $request, $invoice)
     {
-        $role->update($request->validated());
+        $invoice->update($request->validated());
 
         return response()->json([
             "success" => true,
-            "message" => 'Upated Successfully'
+            "message" => "Updated Successfully"
         ]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Role  $role
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Role $role)
+    public function destroy($invoice)
     {
-        $role->delete();
+        $invoice->delete();
 
         return response()->json([
             "success" => true,
-            "message" => 'Succesfully Deleted'
+            "message" => "Deleted Successfully"
         ]);
     }
 }

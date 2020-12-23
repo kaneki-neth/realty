@@ -34,7 +34,7 @@ class CategoryController extends Controller
         
         return response()->json([
             "success" => true,
-            "message" => "newly success created"    
+            "message" => "Successfully created"    
         ], 201);
     }
 
@@ -62,7 +62,7 @@ class CategoryController extends Controller
         
         return response()->json([
             "success" => true,
-            "message" => "newly success updated"    
+            "message" => "Updated Successfully"    
         ]);
     }
 
@@ -78,7 +78,7 @@ class CategoryController extends Controller
 
         return response()->json([
             "success" => true,
-            "message" => "newly success deleted"    
+            "message" => "Successfully Deleted"    
         ]);
     }
 }

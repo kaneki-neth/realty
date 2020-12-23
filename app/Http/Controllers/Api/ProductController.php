@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreRoleRequest;
-use App\Http\Requests\UpdateRoleRequest;
-use App\Http\Resources\RoleResource;
-use App\Models\Role;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\UpdateProductRequest;
+use App\Http\Resources\ProductResource;
 
-class RoleController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +18,9 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::all();
-        return RoleResource::collection($roles);
+        $products = Product::all();
+        return ProductResource::collection($products);
+        
     }
 
     /**
@@ -28,57 +29,57 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRoleRequest $request)
+    public function store(StoreProductRequest $request)
     {
-        Role::create($request->validated());
+        Product::create($request->validated());
 
         return response()->json([
-            "success" => true,
-            "message" => 'Successfully Created'
+            "success" => "true",
+            "message" => "Successfully created"
         ], 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Role  $role
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Role $role)
+    public function show(Product $product)
     {
-        return new RoleResource($role);
+        return new ProductResource($product);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Role  $role
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRoleRequest $request, Role $role)
+    public function update(UpdateProductRequest $request, $product)
     {
-        $role->update($request->validated());
+        $product->update($request->validated());
 
         return response()->json([
             "success" => true,
-            "message" => 'Upated Successfully'
+            "message" => "Successfully Updated"
         ]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Role  $role
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Role $role)
+    public function destroy(Product $product)
     {
-        $role->delete();
+        $product->delete();
 
         return response()->json([
             "success" => true,
-            "message" => 'Succesfully Deleted'
+            "message" => "Deleted Successfully"
         ]);
     }
 }
